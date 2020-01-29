@@ -11,32 +11,53 @@ namespace BEProject.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(TodoList list)
+        private BaseMainContext context;
+
+        public ActionResult Index()
         {
-            string Name = list.Name;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Addİtem(FormCollection fc)
+        public ActionResult Index(TodoList list)
         {
             var memoryOptions = new DbContextOptionsBuilder<BaseMainContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            using (var context= new BaseMainContext(memoryOptions))
-            {
-                var item =  new TodoList();
+            string Name = list.Name;
+            DateTime date = list.CreateDate;
+            int status = list.Status;
 
-                item.Name = fc["Name"].ToString();
-                item.CreateDate = DateTime.Now;
-                item.Status = 1;
-                
-                context.TodoListSet.Add(item);
-            }
 
-                ViewBag.Message = "item add in todoList";
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Addİtem(FormCollection fc)
+        {
+
+            var item = new TodoList();
+
+            item.Name = fc["Name"].ToString();
+            item.CreateDate = DateTime.Now;
+            item.Status = 1;
+
+            context.TodoListSet.Add(item);
+            context.SaveChanges();
+
+
+            ViewBag.Message = "item add in todoList";
+
+            return View(); 
+        }
+
+        [HttpGet]
+        public ActionResult GetTodoList()
+        {
+            var result=context.TodoListSet.ToList();
 
             return View();
         }

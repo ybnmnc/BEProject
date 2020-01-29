@@ -1,21 +1,21 @@
 ﻿@model BEProject.Models.TodoList
 
 @{
-    ViewBag.Title = "Addİtem";
+	ViewBag.Title = "Addİtem";
 }
 
 <h2>Addİtem</h2>
 
 @using (var form = Html.BeginForm("Addİtem", "Home", FormMethod.Post))
 {
-    @Html.HiddenFor(model => model.Name)
-    <div class="input-group">
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-info" id="itemCall"></button>
+	@Html.HiddenFor(model => model.Name)
+	<div class="input-group">
+		@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-info" id="itemCall"></button>
 
-        </div>
-    </div>
-    @Html.ValidationSummary()
+		</div>
+	</div>
+	@Html.ValidationSummary()
 }
 

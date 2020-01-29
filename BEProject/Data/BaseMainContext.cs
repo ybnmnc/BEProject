@@ -1,5 +1,6 @@
 ﻿using BEProject.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace BEProject.Data
     public class BaseMainContext : DbContext
     {
         public BaseMainContext(DbContextOptions options) : base(options)
-        {
-
-        }
+        { }
         public DbSet<TodoList> TodoListSet { get; set; }
+
+      
     }
 }
