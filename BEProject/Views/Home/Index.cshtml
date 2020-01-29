@@ -1,0 +1,18 @@
+﻿@model BEProject.Models.TodoList
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Index</h2>
+
+@using (var form = Html.BeginForm("Addİtem", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Name)
+    <div class="input-group">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        <div class="input-group-append">
+           
+        </div>
+    </div>
+    @Html.ValidationSummary()
+}
