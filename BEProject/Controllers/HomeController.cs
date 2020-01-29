@@ -11,8 +11,10 @@ namespace BEProject.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(TodoList list)
         {
+            string Name = list.Name;
+
             return View();
         }
 
@@ -27,10 +29,10 @@ namespace BEProject.Controllers
             {
                 var item =  new TodoList();
 
-                //item.Name = fc["Name"].ToString();
+                item.Name = fc["Name"].ToString();
                 item.CreateDate = DateTime.Now;
                 item.Status = 1;
-
+                
                 context.TodoListSet.Add(item);
             }
 
